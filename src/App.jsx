@@ -1,8 +1,10 @@
 import React from "react"
 
+import Catalog from "./components/catalog/Catalog"
+
 const App = () => {
   return (
-    <h1>Hello world!</h1>
+    <Catalog />
   )
 }
 
