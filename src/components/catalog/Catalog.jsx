@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { getAllPhones } from '../../services/phones'
 
@@ -18,9 +19,9 @@ const Catalog = () => {
     }, [])
 
     return (
-        <ul>
+        <Grid container component="ul" spacing={3} justifyContent='center'>
             {phones.map(phone => <CatalogCard key={phone._id} phoneData={phone} />)}
-        </ul>
+        </Grid>
     )
 }
 

@@ -4,7 +4,7 @@ const url = process.env.REACT_APP_SERVER_DEV
 
 export const getAllPhones = () => {
     try{ 
-        return axios.get(`${url}phones`)
+        return axios.get(`${url}api/phones`)
     }
     catch(error) {
         return error
