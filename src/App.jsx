@@ -1,6 +1,6 @@
-import React from "react"
+import React from 'react'
 
-import Catalog from "./components/catalog/Catalog"
+import Catalog from './components/catalog/Catalog'
 
 const App = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
 import {
   Card,
   CardContent,
@@ -8,11 +8,11 @@ import {
   Collapse,
   CardActions,
   IconButton,
-} from "@mui/material"
-import EditIcon from "@mui/icons-material/Edit"
-import DeleteIcon from "@mui/icons-material/Delete"
+} from '@mui/material'
+import EditIcon from '@mui/icons-material/Edit'
+import DeleteIcon from '@mui/icons-material/Delete'
 
-import PhoneDialog from "../dialog/PhoneDialog"
+import PhoneDialog from '../dialog/PhoneDialog'
 
 const CatalogCard = ({ phoneData }) => {
   const { name, manufacturer, price, imageFileName, description, screen, processor, ram } = phoneData
@@ -87,4 +87,4 @@ const CatalogCard = ({ phoneData }) => {
   );
 };
 
-export default CatalogCard;
+export default CatalogCard

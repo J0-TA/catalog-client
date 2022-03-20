@@ -1,9 +1,9 @@
-import { Backdrop, Button, CircularProgress, Grid } from "@mui/material"
-import React, { useEffect, useState } from "react"
-import { getAllPhones } from "../../services/phones"
+import { Backdrop, Button, CircularProgress, Grid } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { getAllPhones } from '../../services/phones'
 
-import CatalogCard from "../card/CatalogCard"
-import PhoneDialog from "../dialog/PhoneDialog"
+import CatalogCard from '../card/CatalogCard'
+import PhoneDialog from '../dialog/PhoneDialog'
 
 const Catalog = () => {
   const [phones, setPhones] = useState([])
@@ -46,4 +46,4 @@ const Catalog = () => {
   );
 };
 
-export default Catalog;
+export default Catalog
