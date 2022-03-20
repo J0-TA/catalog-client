@@ -10,3 +10,28 @@ export const getAllPhones = () => {
         return error
     }
 }
+
+export const updatePhone = (id, phone) => {
+    console.log(phone)
+    try {
+        return axios.put(`${url}api/phones/${id}`, phone)
+    } catch (error) {
+        return error
+    }
+}
+
+export const addPhone = (phone) => {
+    try {
+        return axios.post(`${url}api/phones/`, phone)
+    } catch (error) {
+        return error
+    }
+}
+
+export const deletePhone = (id) => { 
+    try {
+        return axios.delete(`${url}api/phones/${id}`)
+    } catch (error) {
+        return error
+    }
+}
