@@ -11,7 +11,7 @@ const Catalog = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleClick = () => setOpenDialog(true)
-  const handleCloseDialog = () => setOpenDialog(false)
+  const handleCloseDialog = (phone) => setOpenDialog(false)
 
   useEffect(() => {
     let mounted = true

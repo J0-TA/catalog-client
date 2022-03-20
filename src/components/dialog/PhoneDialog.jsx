@@ -9,6 +9,7 @@ import {
     DialogTitle, 
     TextField 
 } from '@mui/material'
+import { addPhone, updatePhone } from '../../services/phones'
 
 const colors = ['white', 'black', 'product red', 'red', 'blue', 'purple','green', 'yellow', 'gray','']
 
@@ -56,8 +57,7 @@ const PhoneDialog = ({ open, handleClose, phone }) => {
 
     const handleSave = () => {
         if (handleValidation()){
-            //updatePhone()
-            console.log(formData)
+            phone ? updatePhone(phone._id, formData) : addPhone(formData)
             handleClose()
         } else {
             setError("All fields required")
