@@ -30,13 +30,14 @@ const CatalogCard = ({ phoneData }) => {
     <>
       <Grid item textAlign="center">
         <Card
-          sx={{ width: 340, padding: 2, marginTop: 2, cursor:'pointer' }}
+          sx={{ minHeight: 500, width: 340, padding: 2, marginTop: 2, cursor:'pointer' }}
           onClick={handleExpandClick}
         >
           <Box
             component="img"
             src={`${process.env.REACT_APP_SERVER_DEV}${imageFileName}`}
             alt={`${manufacturer} ${name}`}
+            height={400}
           />
           <CardContent>
             <Typography
