@@ -85,7 +85,7 @@ const CatalogCard = ({ phoneData }) => {
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default CatalogCard;
+export default CatalogCard

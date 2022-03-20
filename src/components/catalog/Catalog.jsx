@@ -1,17 +1,12 @@
-import { Backdrop, Button, CircularProgress, Grid } from "@mui/material"
+import { Backdrop, CircularProgress, Grid } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { getAllPhones } from "../../services/phones"
 
 import CatalogCard from "../card/CatalogCard"
-import PhoneDialog from "../dialog/PhoneDialog"
 
 const Catalog = () => {
   const [phones, setPhones] = useState([])
-  const [openDialog, setOpenDialog] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-
-  const handleClick = () => setOpenDialog(true)
-  const handleCloseDialog = (phone) => setOpenDialog(false)
 
   useEffect(() => {
     let mounted = true
@@ -27,7 +22,6 @@ const Catalog = () => {
 
   return (
     <>
-      <Button onClick={handleClick}>Add new Phone</Button>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={isLoading}
@@ -39,11 +33,9 @@ const Catalog = () => {
           <CatalogCard key={phone._id} phoneData={phone} />
         ))}
       </Grid>
-      {openDialog && (
-        <PhoneDialog open={openDialog} handleClose={handleCloseDialog} />
-      )}
+      
     </>
   );
 };
 
-export default Catalog;
+export default Catalog
