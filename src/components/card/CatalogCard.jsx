@@ -15,7 +15,16 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import PhoneDialog from "../dialog/PhoneDialog"
 
 const CatalogCard = ({ phoneData, handleDelete, handleUpdate }) => {
-  const { name, manufacturer, price, imageFileName, description, screen, processor, ram } = phoneData
+  const { 
+    name, 
+    manufacturer, 
+    price, 
+    imageFileName, 
+    description, 
+    screen, 
+    processor, 
+    ram 
+  } = phoneData
 
   const [expanded, setExpanded] = useState(false)
   const [openDialog, setOpenDialog] = useState(false)

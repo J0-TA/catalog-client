@@ -1,9 +1,9 @@
 import React, { useState } from "react"
+import { addPhone } from "./services/phones"
 
 import Catalog from "./components/catalog/Catalog"
 import PhoneDialog from "./components/dialog/PhoneDialog"
 import AppHeader from "./components/header/AppHeader"
-import { addPhone } from "./services/phones"
 
 const App = () => {
   const [openDialog, setOpenDialog] = useState(false)
