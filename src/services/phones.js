@@ -12,7 +12,6 @@ export const getAllPhones = () => {
 }
 
 export const updatePhone = (id, phone) => {
-    console.log(phone)
     try {
         return axios.put(`${url}api/phones/${id}`, phone)
     } catch (error) {

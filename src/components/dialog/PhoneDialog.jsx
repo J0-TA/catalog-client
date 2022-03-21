@@ -9,11 +9,11 @@ import {
     DialogTitle, 
     TextField 
 } from '@mui/material'
-import { addPhone, updatePhone } from '../../services/phones'
+import { addPhone } from '../../services/phones'
 
 const colors = ['white', 'black', 'product red', 'red', 'blue', 'purple','green', 'yellow', 'gray','']
 
-const PhoneDialog = ({ open, handleClose, phone }) => {
+const PhoneDialog = ({ open, handleClose, handleUpdate, phone }) => {
     const [ error, setError ] = useState(null)
     const [ formData, setFormData ] = useState({
         name: phone ? phone.name : "",
@@ -57,7 +57,7 @@ const PhoneDialog = ({ open, handleClose, phone }) => {
 
     const handleSave = () => {
         if (handleValidation()){
-            phone ? updatePhone(phone._id, formData) : addPhone(formData)
+            phone ? handleUpdate(phone._id, formData) : addPhone(formData)
             handleClose()
         } else {
             setError("All fields required")
