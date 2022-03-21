@@ -13,18 +13,26 @@ import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 
 import PhoneDialog from "../dialog/PhoneDialog"
-import { deletePhone } from "../../services/phones"
 
-const CatalogCard = ({ phoneData }) => {
-  const { name, manufacturer, price, imageFileName, description, screen, processor, ram } = phoneData
+const CatalogCard = ({ phoneData, handleDelete, handleUpdate }) => {
+  const { 
+    name, 
+    manufacturer, 
+    price, 
+    imageFileName, 
+    description, 
+    screen, 
+    processor, 
+    ram 
+  } = phoneData
 
   const [expanded, setExpanded] = useState(false)
   const [openDialog, setOpenDialog] = useState(false)
 
   const handleExpandClick = () => setExpanded(!expanded)
-  const handleDeleteClick = () => deletePhone(phoneData._id)
   const handleOpenDialog = () => setOpenDialog(true)
   const handleCloseDialog = () => setOpenDialog(false)
+  const handleDeleteClick = () => handleDelete(phoneData._id)
 
   return (
     <>
@@ -83,6 +91,7 @@ const CatalogCard = ({ phoneData }) => {
           open={openDialog}
           handleClose={handleCloseDialog}
           phone={phoneData}
+          handleUpdate={handleUpdate}
         />
       )}
     </>

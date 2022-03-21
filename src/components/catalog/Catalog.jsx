@@ -1,12 +1,31 @@
-import { Backdrop, CircularProgress, Grid } from "@mui/material"
 import React, { useEffect, useState } from "react"
-import { getAllPhones } from "../../services/phones"
+import { Backdrop, CircularProgress, Grid } from "@mui/material"
+import { deletePhone, getAllPhones, updatePhone } from "../../services/phones"
 
 import CatalogCard from "../card/CatalogCard"
 
-const Catalog = () => {
+const Catalog = ({ addedPhone }) => {
   const [phones, setPhones] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+
+  const handleDelete = (id) => {
+      const existingPhone = phones.find(phone => phone._id === id)
+      if (existingPhone) {
+          const newPhones = phones.filter(phone => phone._id !== id)
+          deletePhone(id)
+          setPhones(newPhones)
+      }
+  } 
+  const handleUpdate = (id, phone) => {
+      const targetPhoneIdx = phones.findIndex(e => e._id === id)
+      const targetPhone = phones.find(e => e._id === id)
+      if (targetPhoneIdx !== -1) {
+          const newPhones = [...phones]
+          newPhones[targetPhoneIdx] = {...targetPhone, ...phone}
+          setPhones(newPhones)
+          updatePhone(id,phone)          
+      }
+  }
 
   useEffect(() => {
     let mounted = true
@@ -18,7 +37,7 @@ const Catalog = () => {
       }
     });
     return () => (mounted = false)
-  }, [])
+  }, [addedPhone])
 
   return (
     <>
@@ -30,7 +49,7 @@ const Catalog = () => {
       </Backdrop>
       <Grid container component="ul" spacing={3} justifyContent="center">
         {phones.map((phone) => (
-          <CatalogCard key={phone._id} phoneData={phone} />
+          <CatalogCard key={phone._id} phoneData={phone} handleDelete={handleDelete} handleUpdate={handleUpdate} />
         ))}
       </Grid>
       
