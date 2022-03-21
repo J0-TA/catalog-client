@@ -4,7 +4,7 @@ import { deletePhone, getAllPhones, updatePhone } from "../../services/phones"
 
 import CatalogCard from "../card/CatalogCard"
 
-const Catalog = () => {
+const Catalog = ({ addedPhone }) => {
   const [phones, setPhones] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -25,7 +25,7 @@ const Catalog = () => {
           setPhones(newPhones)
           updatePhone(id,phone)          
       }
-  } 
+  }
 
   useEffect(() => {
     let mounted = true
@@ -37,7 +37,7 @@ const Catalog = () => {
       }
     });
     return () => (mounted = false)
-  }, [])
+  }, [addedPhone])
 
   return (
     <>
