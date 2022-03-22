@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Alert, Backdrop, CircularProgress, Grid, Snackbar, snackbarClasses } from "@mui/material"
+import { Alert, Backdrop, CircularProgress, Grid, Snackbar } from "@mui/material"
 import { deletePhone, getAllPhones, updatePhone } from "../../services/phones"
 
 import CatalogCard from "../card/CatalogCard"
@@ -10,7 +10,7 @@ const Catalog = ({ addedPhone }) => {
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
-    severity: ""
+    severity: "success"
   })
 
   const handleDelete = (id) => {
