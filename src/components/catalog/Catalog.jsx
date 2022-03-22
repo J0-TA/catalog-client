@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Backdrop, CircularProgress, Grid } from "@mui/material"
+import { Alert, Backdrop, CircularProgress, Grid, Snackbar, snackbarClasses } from "@mui/material"
 import { deletePhone, getAllPhones, updatePhone } from "../../services/phones"
 
 import CatalogCard from "../card/CatalogCard"
@@ -7,6 +7,11 @@ import CatalogCard from "../card/CatalogCard"
 const Catalog = ({ addedPhone }) => {
   const [phones, setPhones] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: ""
+  })
 
   const handleDelete = (id) => {
       const existingPhone = phones.find(phone => phone._id === id)
@@ -14,6 +19,11 @@ const Catalog = ({ addedPhone }) => {
           const newPhones = phones.filter(phone => phone._id !== id)
           deletePhone(id)
           setPhones(newPhones)
+          setSnackbar({
+            open: true,
+            message: 'Phone deleted.',
+            severity: 'error'
+          })
       }
   } 
   const handleUpdate = (id, phone) => {
@@ -23,11 +33,26 @@ const Catalog = ({ addedPhone }) => {
           const newPhones = [...phones]
           newPhones[targetPhoneIdx] = {...targetPhone, ...phone}
           setPhones(newPhones)
-          updatePhone(id,phone)          
+          updatePhone(id,phone)
+          setSnackbar({
+            open: true,
+            message: 'Phone updated.',
+            severity: 'success'
+          })
+
       }
   }
 
+  const handleCloseSnackbar = () => setSnackbar({...snackbar, open: false})
+
   useEffect(() => {
+    if (addedPhone) {
+      setSnackbar({
+        open: true,
+        severity: 'success',
+        message: 'Phone added.'
+      })
+    }
     let mounted = true
     setIsLoading(true)
     getAllPhones().then((items) => {
@@ -52,7 +77,11 @@ const Catalog = ({ addedPhone }) => {
           <CatalogCard key={phone._id} phoneData={phone} handleDelete={handleDelete} handleUpdate={handleUpdate} />
         ))}
       </Grid>
-      
+      <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={handleCloseSnackbar} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: '100%' }}>
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 };
