@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Alert, Backdrop, CircularProgress, Grid, Snackbar } from "@mui/material"
+import { Alert, Backdrop, Box, CircularProgress, Grid, Snackbar, Typography } from "@mui/material"
 import { deletePhone, getAllPhones, updatePhone } from "../../services/phones"
 
 import CatalogCard from "../card/CatalogCard"
@@ -73,9 +73,17 @@ const Catalog = ({ addedPhone }) => {
         <CircularProgress color="inherit" />
       </Backdrop>
       <Grid container component="ul" spacing={3} justifyContent="center">
-        {phones.map((phone) => (
-          <CatalogCard key={phone._id} phoneData={phone} handleDelete={handleDelete} handleUpdate={handleUpdate} />
-        ))}
+        {
+          phones.length !== 0 
+            ? phones.map((phone) => (
+                <CatalogCard key={phone._id} phoneData={phone} handleDelete={handleDelete} handleUpdate={handleUpdate} />
+              ))  
+            : (
+                <Box mt={20}>
+                  <Typography variant="h3">Ooops! Looks that our database is empty.. Let's add new phones!</Typography>
+                </Box>
+              )
+        }
       </Grid>
       <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={handleCloseSnackbar} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
         <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: '100%' }}>
